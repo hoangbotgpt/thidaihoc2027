@@ -53,11 +53,11 @@ npm run preview   # xem thử bản build
 
 1. Tạo repo public trên GitHub rồi đẩy code lên nhánh `main`:
    ```bash
-   git remote add origin https://github.com/<tài-khoản>/<tên-repo>.git
+   git remote add origin https://github.com/hoangbotgpt/thidaihoc2027.git
    git push -u origin main
    ```
 2. Trên GitHub, vào **Settings → Pages**, mục **Source** chọn **GitHub Actions**.
-3. Workflow `.github/workflows/deploy.yml` sẽ build và đăng trang tại `https://<tài-khoản>.github.io/<tên-repo>/`.
+3. Workflow `.github/workflows/deploy.yml` sẽ build và đăng trang tại `https://hoangbotgpt.github.io/thidaihoc2027/`.
 
 ## Cấu trúc thư mục
 
@@ -85,6 +85,10 @@ tools/
 
 - Điểm chuẩn 2026: [diemthi.tuyensinh247.com/diem-chuan.html](https://diemthi.tuyensinh247.com/diem-chuan.html)
 - Đề án tuyển sinh 2026: [diemthi.tuyensinh247.com/de-an-tuyen-sinh.html](https://diemthi.tuyensinh247.com/de-an-tuyen-sinh.html) và văn bản gốc của từng trường (link trong cột `de_an_2026_url`, sheet `Truong`).
+
+## Tác giả
+
+[hoangbotgpt](https://github.com/hoangbotgpt) · hoang.bot.gpt@gmail.com
 
 ## Giấy phép
 
