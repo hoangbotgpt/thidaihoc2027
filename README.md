@@ -30,7 +30,7 @@ File Excel tải lên cần cùng cấu trúc với `data/diem-chuan-2026.xlsx` 
    pip install -r requirements.txt
    npm run db
    ```
-3. Commit cả hai file. Nếu đã bật GitHub Pages, trang sẽ tự build lại.
+3. Commit cả hai file.
 
 Nếu nơi lưu trữ không phục vụ được file `.sqlite`, có thể mã hóa base64 rồi build với `VITE_SQLITE_URL`:
 ```bash
@@ -48,16 +48,6 @@ npm run dev       # http://localhost:5173
 npm run build     # xuất bản tĩnh vào dist/
 npm run preview   # xem thử bản build
 ```
-
-## Đưa lên GitHub Pages
-
-1. Tạo repo public trên GitHub rồi đẩy code lên nhánh `main`:
-   ```bash
-   git remote add origin https://github.com/hoangbotgpt/thidaihoc2027.git
-   git push -u origin main
-   ```
-2. Trên GitHub, vào **Settings → Pages**, mục **Source** chọn **GitHub Actions**.
-3. Workflow `.github/workflows/deploy.yml` sẽ build và đăng trang tại `https://hoangbotgpt.github.io/thidaihoc2027/`.
 
 ## Cấu trúc thư mục
 
