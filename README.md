@@ -32,6 +32,12 @@ File Excel tải lên cần cùng cấu trúc với `data/diem-chuan-2026.xlsx` 
    ```
 3. Commit cả hai file. Nếu đã bật GitHub Pages, trang sẽ tự build lại.
 
+Nếu nơi lưu trữ không phục vụ được file `.sqlite`, có thể mã hóa base64 rồi build với `VITE_SQLITE_URL`:
+```bash
+base64 -w0 public/data/diem-chuan-2026.sqlite > public/data/diem-chuan-2026.sqlite.b64.txt
+VITE_SQLITE_URL=./data/diem-chuan-2026.sqlite.b64.txt npm run build
+```
+
 ## Chạy trên máy
 
 Cần Node.js 18 trở lên.

@@ -6,7 +6,13 @@ import App from './App.jsx';
 import { parseSqlite, parseWorkbook } from './loadData.js';
 
 // Nguồn 1 (mặc định): file SQLite dữ liệu gốc đi kèm trang web.
-const SQLITE_URL = `${import.meta.env.BASE_URL}data/diem-chuan-2026.sqlite`;
+// VITE_SQLITE_URL cho phép đổi đường dẫn khi build; đuôi .b64.txt nghĩa là file SQLite được mã hóa base64
+// (dùng cho nơi lưu trữ không phục vụ được file .sqlite).
+const SQLITE_URL = import.meta.env.VITE_SQLITE_URL || `${import.meta.env.BASE_URL}data/diem-chuan-2026.sqlite`;
+const readSqliteBytes = async (res) =>
+  /\.b64\.txt$/i.test(SQLITE_URL)
+    ? Uint8Array.from(atob((await res.text()).trim()), (c) => c.charCodeAt(0))
+    : new Uint8Array(await res.arrayBuffer());
 
 let sqlPromise = null;
 const getSql = () => (sqlPromise ??= initSqlJs({ locateFile: () => wasmUrl }));
@@ -29,7 +35,7 @@ export default function Root() {
     try {
       const [SQL, res] = await Promise.all([getSql(), fetch(SQLITE_URL, { cache: 'no-cache' })]);
       if (!res.ok) throw new Error(`Không tải được ${SQLITE_URL} (mã ${res.status}).`);
-      const data = parseSqlite(SQL, new Uint8Array(await res.arrayBuffer()));
+      const data = parseSqlite(SQL, await readSqliteBytes(res));
       setState({ status: 'ready', data, origin: 'sqlite', fileName: 'diem-chuan-2026.sqlite' });
       setShowIssues(false);
       setVersion((v) => v + 1);
